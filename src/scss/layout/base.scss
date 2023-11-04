@@ -1,0 +1,359 @@
+@charset "UTF-8";
+@use "../utility/variable" as var;
+
+* {
+    font-family: var.$fontGothic;
+    scroll-behavior: smooth;
+}
+body {
+    color: var.$baseColor;
+    &.stop_scroll {
+        overflow: hidden;
+    }
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    line-height: 1.6em;
+}
+a {
+    img {
+        opacity: 1;
+        transition: opacity 0.4s;
+    }
+    &:hover {
+        img {
+            opacity: 0.8;
+        }
+    }
+    &.opacity {
+        opacity: 1;
+        transition: opacity 0.4s;
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+}
+
+main {
+    overflow: hidden;
+}
+
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.center {
+    text-align: center;
+}
+.flex {
+    display: flex;
+}
+.f-wrap {
+    flex-wrap: wrap;
+}
+.f-jc-sb {
+    justify-content: space-between;
+}
+.f-jc-c {
+    justify-content: center;
+}
+.f-jc-fe {
+    justify-content: flex-end;
+}
+.f-ai-c {
+    align-items: center;
+}
+.f-ai-fs {
+    align-items: flex-start;
+}
+.f-ai-fe {
+    align-items: flex-end;
+}
+.f-ac-c {
+    align-content: center;
+}
+.base {
+    width: 100%;
+    max-width: 1170px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+@media only screen and (min-width: 768px) {
+    .sp {
+        display: none !important;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .pc {
+        display: none !important;
+    }
+}
+
+// 頻出クラス始まり
+.flex {
+    display: flex;
+}
+
+.hidden {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+}
+
+// 頻出クラス終わり
+
+// ヘッダー始まり
+header {
+    font-family: var.$fontSerif;
+    .header {
+        // ロゴ始まり
+        &__wrap {
+            position: fixed;
+            z-index: 99999;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        &__logo {
+            width: 100%;
+            max-width: 191px;
+            margin: 0 0 0 35px;
+            fill: #fff;
+            transition: fill 0.4s;
+            padding: 19px 0 18px;
+            @media screen and (max-width: 767px) {
+                max-width: 103px;
+                margin: 0 0 0 20px;
+            }
+            &.changeColor {
+                fill: #231815;
+            }
+        }
+
+        // ロゴ終わり
+
+        // 電話とハンバーガーボタン始まり
+        &__contents {
+            display: flex;
+            width: 100%;
+            max-width: 205px;
+        }
+        &__tel__btn {
+            width: 100%;
+            max-width: 140px;
+            display: block;
+            padding: 25px 0 24px;
+            text-align: center;
+            background: #000;
+            color: #fff;
+        }
+
+        &__nav__btn {
+            position: relative;
+            width: 100%;
+            max-width: 65px;
+            background: #fff;
+            cursor: pointer;
+            &.open span {
+                &:first-child {
+                    top: 50%;
+                    transform: translate(-50%, -50%) rotate(45deg);
+                }
+                &:not(:first-child, :last-child) {
+                    opacity: 0;
+                }
+                &:last-child {
+                    top: 50%;
+                    transform: translate(-50%, -50%) rotate(-45deg);
+                }
+            }
+            span {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                display: block;
+                width: 24px;
+                height: 1px;
+                background: #333;
+                transform: translate(-50%, -50%);
+                transition: all 0.4s ease-out;
+                &:first-child {
+                    top: 35%;
+                    transform: translate(-50%, -50%);
+                }
+                &:last-child {
+                    top: 65%;
+                    transform: translate(-50%, -50%);
+                }
+            }
+        }
+    }
+    // 電話とハンバーガーボタン終わり
+    // ヘッダー終わり
+
+    // ナビゲーション始まり
+    .nav {
+        position: fixed;
+        z-index: -999;
+        width: 100vw;
+        height: 100dvh;
+        overflow-y: hidden;
+        transition: all 0.4s ease-out;
+        opacity: 0;
+        &.active {
+            z-index: 9999;
+            opacity: 1;
+        }
+        &__wrap {
+            height: 100%;
+            @media screen and (max-width: 767px) {
+                flex-direction: column-reverse;
+            }
+        }
+        &__img__wrap {
+            width: 100%;
+            max-width: 62.7%;
+            height: 50vh;
+            @media screen and (max-width: 767px) {
+                display: flex;
+                height: 20%;
+                max-width: 100%;
+            }
+            @media screen and (max-width: 450px) {
+                height: 80px;
+            }
+            .img {
+                object-fit: cover;
+                width: 100%;
+                height: 100%;
+                &:nth-child(1) {
+                    background: url(../../img/common/nav01.jpg);
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    background-position: top center;
+                }
+                &:nth-child(2) {
+                    background: url(../../img/common/nav02.jpg);
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                }
+            }
+        }
+        &__contents {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            max-width: 37.3%;
+            background: #fff;
+            @media screen and (max-width: 767px) {
+                max-width: 100%;
+                height: 100%;
+                justify-content: center;
+            }
+        }
+        &__contents__wrap {
+            padding: 0 0 0 108px;
+            @media screen and (max-width: 767px) {
+                text-align: center;
+                padding: 70px 0 0;
+            }
+            li {
+                overflow: hidden;
+                height: 1.6em;
+                &:not(:last-child) {
+                    margin: 0 0 35px 0;
+                    @media screen and (max-width: 767px) {
+                        margin: 0 0 20px 0;
+                    }
+                }
+                a {
+                    display: block;
+                    font-size: 22px;
+                    font-weight: 500;
+                    letter-spacing: 0.03em;
+                    line-height: 1em;
+                    color: #000;
+                    @media screen and (max-width: 767px) {
+                        font-size: 18px;
+                    }
+                    
+                }
+            }
+        }
+    }
+    // ナビゲーション終わり
+}
+
+// フッター始まり
+footer {
+    background: url(../../img/common/bg_footer01.jpg) no-repeat 50% 50% / cover;
+    height: 100%;
+    .base {
+        width: 100%;
+        max-width: 353px;
+        margin: 0 auto;
+        padding: 52px 0;
+        color: #fff;
+        p {
+            font-family: var.$fontNotoSerif;
+            font-size: 14px;
+            display: block;
+            margin: 0 0 27px 0;
+            @media screen and (max-width: 767px) {
+                font-size: 12px;
+            }
+        }
+        .name__wrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin: 0 0 45px 0;
+            .footer__logo {
+                width: 100%;
+                max-width: 190px;
+                @media screen and (max-width: 767px) {
+                    max-width: 155px;
+                }
+            }
+            h2 {
+                font-family: var.$fontTxt;
+                font-size: 14px;
+                letter-spacing: 0.08em;
+                line-height: 1em;
+                @media screen and (max-width: 767px) {
+                    font-size: 12px;
+                }
+            }
+        }
+        small {
+            font-family: var.$fontHelvetica;
+            display: block;
+            font-size: 10px;
+            font-weight: 400;
+            line-height: 1em;
+            letter-spacing: 0.08em;
+            @media screen and (max-width: 767px) {
+                font-size: 9px;
+            }
+        }
+    }
+}
+// フッター終わり
